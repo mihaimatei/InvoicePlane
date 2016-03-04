@@ -18,3 +18,7 @@ UPDATE ip_settings
 SET setting_value='InvoicePlane'
 WHERE setting_key='pdf_quote_template' AND
       (setting_value='default' OR setting_value='blue' OR setting_value='red' OR setting_value='green');
+
+# IP-254 Receipts
+ALTER TABLE `ip_payments`
+ADD COLUMN `receipt_number` VARCHAR(20) NULL;
