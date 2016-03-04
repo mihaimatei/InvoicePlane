@@ -6,6 +6,7 @@
             <th><?php echo lang('payment_date'); ?></th>
             <th><?php echo lang('invoice_date'); ?></th>
             <th><?php echo lang('invoice'); ?></th>
+            <th><?php echo lang('receipt'); ?></th>
             <th><?php echo lang('client'); ?></th>
             <th><?php echo lang('amount'); ?></th>
             <th><?php echo lang('payment_method'); ?></th>
@@ -18,8 +19,9 @@
         <?php foreach ($payments as $payment) { ?>
             <tr>
                 <td><?php echo date_from_mysql($payment->payment_date); ?></td>
-                <td><?php echo date_from_mysql($payment->invoice_date_created); ?></td>
+                <td><?php echo date_from_mysql($payment->invoice_date_created); ?></td>                
                 <td><?php echo anchor('invoices/view/' . $payment->invoice_id, $payment->invoice_number); ?></td>
+                <td><?php echo $payment->receipt_number; ?></td>
                 <td>
                     <a href="<?php echo site_url('clients/view/' . $payment->client_id); ?>"
                        title="<?php echo lang('view_client'); ?>">

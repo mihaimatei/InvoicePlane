@@ -54,6 +54,9 @@ class Payments extends Admin_Controller
 
             $this->load->model('custom_fields/mdl_payment_custom');
 
+            //MMA-20160103
+            //$_POST['custom']['payment_custom_receipt_number'] = $this->mdl_payments->get_receipt_number($_POST['custom']['payment_custom_receipt_group']);
+
             $this->mdl_payment_custom->save_custom($id, $this->input->post('custom'));
 
             redirect('payments');
@@ -91,6 +94,8 @@ class Payments extends Admin_Controller
         $this->load->model('payment_methods/mdl_payment_methods');
         $this->load->model('custom_fields/mdl_custom_fields');
 
+        $this->load->model('invoice_groups/mdl_invoice_groups');    //MMA-20160103
+
         $open_invoices = $this->mdl_invoices->where('ip_invoice_amounts.invoice_balance >', 0)->get()->result();
 
         $amounts = array();
@@ -107,7 +112,8 @@ class Payments extends Admin_Controller
                 'open_invoices' => $open_invoices,
                 'custom_fields' => $this->mdl_custom_fields->by_table('ip_payment_custom')->get()->result(),
                 'amounts' => json_encode($amounts),
-                'invoice_payment_methods' => json_encode($invoice_payment_methods)
+                'invoice_payment_methods' => json_encode($invoice_payment_methods),
+                'invoice_groups' => $this->mdl_invoice_groups->get()->result()
             )
         );
 

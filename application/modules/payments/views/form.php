@@ -121,6 +121,22 @@
 
         </div>
 
+        <div class="form-group">
+            <div class="col-xs-12 col-sm-2 text-right text-left-xs">
+                <label><?php echo lang('invoice_group'); ?></label>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <select name="receipt_group" id="receipt_group" class="form-control">
+                    <option value=""></option>
+                    <?php foreach ($invoice_groups as $invoice_group) { ?>
+                        <option value="<?php echo $invoice_group->invoice_group_id; ?>"
+                                <?php if ($this->mdl_settings->setting('default_receipt_group') == $invoice_group->invoice_group_id) { ?>selected="selected"<?php } ?>><?php echo $invoice_group->invoice_group_name; ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+        </div>
+
+
         <?php foreach ($custom_fields as $custom_field) { ?>
             <div class="form-group">
                 <div class="col-xs-12 col-sm-2 text-right text-left-xs">

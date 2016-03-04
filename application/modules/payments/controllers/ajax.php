@@ -46,12 +46,15 @@ class Ajax extends Admin_Controller
         $this->load->module('layout');
         $this->load->model('payments/mdl_payments');
         $this->load->model('payment_methods/mdl_payment_methods');
+        $this->load->model('invoice_groups/mdl_invoice_groups');
 
         $data = array(
             'payment_methods' => $this->mdl_payment_methods->get()->result(),
             'invoice_id' => $this->input->post('invoice_id'),
             'invoice_balance' => $this->input->post('invoice_balance'),
-            'invoice_payment_method' => $this->input->post('invoice_payment_method')
+            'invoice_payment_method' => $this->input->post('invoice_payment_method'),
+            'invoice_groups' => $this->mdl_invoice_groups->get()->result()
+
         );
 
         $this->layout->load_view('payments/modal_add_payment', $data);

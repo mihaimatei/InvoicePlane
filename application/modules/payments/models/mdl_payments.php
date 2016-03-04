@@ -74,7 +74,11 @@ class Mdl_Payments extends Response_Model
             'payment_note' => array(
                 'field' => 'payment_note',
                 'label' => lang('note')
-            )
+            ),
+            'receipt_group' => array(
+                'field' => 'receipt_group',
+                'label' => lang('invoice_group')
+            ),
         );
     }
 
@@ -150,7 +154,7 @@ class Mdl_Payments extends Response_Model
         $db_array['payment_amount'] = standardize_amount($db_array['payment_amount']);
 
         return $db_array;
-    }
+    }    
 
     public function prep_form($id = NULL)
     {
@@ -169,6 +173,12 @@ class Mdl_Payments extends Response_Model
     {
         $this->filter_where('ip_clients.client_id', $client_id);
         return $this;
+    }
+
+    public function get_receipt_number($invoice_group_id)
+    {
+        $this->load->model('invoice_groups/mdl_invoice_groups');
+        return $this->mdl_invoice_groups->generate_invoice_number($invoice_group_id);
     }
 
 }
