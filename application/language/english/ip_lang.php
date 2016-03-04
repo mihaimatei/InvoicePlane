@@ -361,6 +361,7 @@ $lang = array(
     'quotes_requiring_approval'                    => 'Quotes Requiring Approval',
     'read_only'                                    => 'Read only',
     'receipt'                                      => 'Receipt',
+    'receipt_numbering_group'                      => 'Receipt numbering group',
     'recent_clients'                               => 'Recent Clients',
     'recent_invoices'                              => 'Recent Invoices',
     'recent_payments'                              => 'Recent Payments',

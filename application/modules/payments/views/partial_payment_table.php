@@ -19,7 +19,7 @@
         <?php foreach ($payments as $payment) { ?>
             <tr>
                 <td><?php echo date_from_mysql($payment->payment_date); ?></td>
-                <td><?php echo date_from_mysql($payment->invoice_date_created); ?></td>                
+                <td><?php echo date_from_mysql($payment->invoice_date_created); ?></td>
                 <td><?php echo anchor('invoices/view/' . $payment->invoice_id, $payment->invoice_number); ?></td>
                 <td><?php echo $payment->receipt_number; ?></td>
                 <td>

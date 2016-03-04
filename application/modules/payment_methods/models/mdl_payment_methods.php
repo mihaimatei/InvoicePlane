@@ -23,7 +23,13 @@ class Mdl_Payment_Methods extends Response_Model
 
     public function default_select()
     {
-        $this->db->select('SQL_CALC_FOUND_ROWS *', FALSE);
+        $this->db->select('SQL_CALC_FOUND_ROWS *,
+        ip_invoice_groups.invoice_group_name', FALSE);
+    }
+
+    public function default_join()
+    {
+        $this->db->join('ip_invoice_groups', 'ip_invoice_groups.invoice_group_id = ip_payment_methods.receipt_group_id', 'left');
     }
 
     public function order_by()
@@ -38,7 +44,11 @@ class Mdl_Payment_Methods extends Response_Model
                 'field' => 'payment_method_name',
                 'label' => lang('payment_method'),
                 'rules' => 'required'
-            )
+            ),
+            'receipt_group_id' => array(
+                'field' => 'receipt_group_id',
+                'label' => lang('receipt_numbering_group')
+            ),
         );
     }
 
