@@ -21,4 +21,5 @@ WHERE setting_key='pdf_quote_template' AND
 
 # IP-254 Receipts
 ALTER TABLE `ip_payments`
-ADD COLUMN `receipt_number` VARCHAR(20) NULL;
+ADD COLUMN `receipt_number` VARCHAR(20) NULL,
+ADD COLUMN `receipt_group_id` INT(11) NOT NULL;

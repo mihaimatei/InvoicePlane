@@ -110,7 +110,7 @@
                 <div class="form-group">
                     <label><?php echo lang('invoice_group'); ?></label>
                     <div class="controls">
-                        <select name="receipt_group" id="receipt_group" class="form-control">
+                        <select name="receipt_group_id" id="receipt_group_id" class="form-control">
                             <option value=""></option>
                             <?php foreach ($invoice_groups as $invoice_group) { ?>
                                 <option value="<?php echo $invoice_group->invoice_group_id; ?>"

@@ -75,8 +75,8 @@ class Mdl_Payments extends Response_Model
                 'field' => 'payment_note',
                 'label' => lang('note')
             ),
-            'receipt_group' => array(
-                'field' => 'receipt_group',
+            'receipt_group_id' => array(
+                'field' => 'receipt_group_id',
                 'label' => lang('invoice_group')
             ),
         );
@@ -152,6 +152,7 @@ class Mdl_Payments extends Response_Model
 
         $db_array['payment_date'] = date_to_mysql($db_array['payment_date']);
         $db_array['payment_amount'] = standardize_amount($db_array['payment_amount']);
+        $db_array['receipt_number'] = $this->get_receipt_number($db_array['receipt_group_id']);
 
         return $db_array;
     }    
