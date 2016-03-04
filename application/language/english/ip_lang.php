@@ -362,6 +362,7 @@ $lang = array(
     'read_only'                                    => 'Read only',
     'receipt'                                      => 'Receipt',
     'receipt_numbering_group'                      => 'Receipt numbering group',
+    'received_from'                                => 'Received from',
     'recent_clients'                               => 'Recent Clients',
     'recent_invoices'                              => 'Recent Invoices',
     'recent_payments'                              => 'Recent Payments',

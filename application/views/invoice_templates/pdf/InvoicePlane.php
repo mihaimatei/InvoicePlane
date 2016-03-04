@@ -224,5 +224,54 @@
     <?php endif; ?>
 </footer>
 
+<?php
+foreach ($payments as $payment) {
+    if($payment->receipt_number) {
+        ?>
+        <header>
+            <h1 class="invoice-title"><?php echo lang('receipt') . ' ' . $payment->receipt_number; ?></h1>
+            <div id="company">
+                <div>Furnizor:</div>
+                <div><b><?php echo $invoice->user_company; ?></b></div>
+                <?php if ($invoice->user_vat_id)
+                    echo '<div>' . lang('vat_id_short') . ': ' . $invoice->user_vat_id . '</div>';
+                if ($invoice->user_tax_code)
+                    echo '<div>' . lang('tax_code_short') . ': ' . $invoice->user_tax_code . '</div>';
+                if ($invoice->user_address_1)
+                    echo '<div>' . $invoice->user_address_1 . '</div>';
+                if ($invoice->user_address_2)
+                    echo '<div>' . $invoice->user_address_2 . '</div>';
+                echo '<div>';
+                if ($invoice->user_city) echo $invoice->user_city;
+                if ($invoice->user_zip) echo  ', ' . $invoice->user_zip;
+                if ($invoice->user_state) echo ', ' . $invoice->user_state;
+                if ($invoice->user_country) echo ', ' . get_country_name(lang('cldr'), $invoice->user_country);
+                echo '</div>';
+                if ($invoice->user_phone) echo '<div>' . lang('phone') . ': ' . $invoice->user_phone . '</div>';
+                if ($invoice->user_fax) echo '<div>' . lang('fax_abbr') . ': ' . $invoice->user_fax . '</div>';
+                ?>
+            </div>
+            <div id="client">
+                <div><b>Seria/Numarul: <?php echo $payment->receipt_number; ?></b></div>
+                <?php echo '<div><b>' . lang('date') . ': ' . date_from_mysql($payment->payment_date, true) . '</b></div>'; ?>
+            </div>
+        </header>
+        <main>
+            <div class="clearfix"></div>
+            <div>
+                <p><?php echo lang('received_from') . ': ' . $invoice->client_name . ','; ?>
+                    <?php echo lang('vat_id') . ': ' . $invoice->client_vat_id . ',' ?>
+                    <?php echo lang('tax_code_short') . ': ' . $invoice->client_tax_code . ',' ?>
+                    <?php echo lang('amount') . ': ' . '<b>' . format_currency($payment->payment_amount) . '</b>' . ',' ?>
+                    <?php echo lang('payment') . ' ' . lang('invoice') . ': ' ?>
+                    <?php echo $invoice->invoice_number . ' / ' . date_from_mysql($invoice->invoice_date_created); ?>
+                </p>
+            </div>
+        </main>
+
+
+    <?php }
+}?>
+
 </body>
 </html>
