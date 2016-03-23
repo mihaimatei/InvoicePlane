@@ -14,7 +14,7 @@
 
     <div id="client">
         <div>
-            <b><?php echo $invoice->client_name; ?></b>
+            <?php echo lang('bill_to') . ': ';?><b><?php echo $invoice->client_name; ?></b>
         </div>
         <?php if ($invoice->client_vat_id) {
             echo '<div>' . lang('vat_id_short') . ': ' . $invoice->client_vat_id . '</div>';
@@ -231,7 +231,6 @@ foreach ($payments as $payment) {
         <header>
             <h1 class="invoice-title"><?php echo lang('receipt') . ' ' . $payment->receipt_number; ?></h1>
             <div id="company">
-                <div>Furnizor:</div>
                 <div><b><?php echo $invoice->user_company; ?></b></div>
                 <?php if ($invoice->user_vat_id)
                     echo '<div>' . lang('vat_id_short') . ': ' . $invoice->user_vat_id . '</div>';
@@ -252,7 +251,7 @@ foreach ($payments as $payment) {
                 ?>
             </div>
             <div id="client">
-                <div><b>Seria/Numarul: <?php echo $payment->receipt_number; ?></b></div>
+                <div><b><?php echo lang('receipt') . ' #: ' . $payment->receipt_number; ?></b></div>
                 <?php echo '<div><b>' . lang('date') . ': ' . date_from_mysql($payment->payment_date, true) . '</b></div>'; ?>
             </div>
         </header>
@@ -260,16 +259,14 @@ foreach ($payments as $payment) {
             <div class="clearfix"></div>
             <div>
                 <p><?php echo lang('received_from') . ': ' . $invoice->client_name . ','; ?>
-                    <?php echo lang('vat_id') . ': ' . $invoice->client_vat_id . ',' ?>
-                    <?php echo lang('tax_code_short') . ': ' . $invoice->client_tax_code . ',' ?>
-                    <?php echo lang('amount') . ': ' . '<b>' . format_currency($payment->payment_amount) . '</b>' . ',' ?>
-                    <?php echo lang('payment') . ' ' . lang('invoice') . ': ' ?>
+                    <?php echo lang('vat_id') . ': ' . $invoice->client_vat_id . ','; ?>
+                    <?php echo lang('tax_code_short') . ': ' . $invoice->client_tax_code . ','; ?>
+                    <?php echo lang('amount') . ': ' . '<b>' . format_currency($payment->payment_amount) . '</b>' . ','; ?>
+                    <?php echo lang('payment') . ' ' . lang('invoice') . ': '; ?>
                     <?php echo $invoice->invoice_number . ' / ' . date_from_mysql($invoice->invoice_date_created); ?>
                 </p>
             </div>
         </main>
-
-
     <?php }
 }?>
 
